@@ -3,24 +3,28 @@
   "version": "1.0.0",
   "main": "app.ts",
   "scripts": {
-    "app": "nodemon -L app.ts"
+    "app": "nodemon -L app.ts",
+    "test": "nodemon -L "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^22.5.4",
-    "@types/nodemailer": "^6.4.15",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.9.0",
-    "nodemailer": "^6.9.15",
+    "nodemailer": "^6.9.15"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^22.5.4",
+    "@types/nodemailer": "^6.4.15",
     "ts-node": "^10.9.2"
   }
 }
+
