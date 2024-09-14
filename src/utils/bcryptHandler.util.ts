@@ -2,12 +2,22 @@ import bcrypt from "bcrypt";
 
 export class BcryptHandler
 {
-    public static HashPassword(password: string): string
+    public static hashPassword(password: string): string
     {
-        return bcrypt.hashSync(password, 10);
+
+        try
+        {
+            return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+        }
+        catch(error: any)
+        {
+            console.log(error.message);
+        }
+
+        return "";
     }
 
-    public static ComparePassword(password: string, hash: string): boolean
+    public static comparePassword(password: string, hash: string): boolean
     {
         return bcrypt.compareSync(password, hash);
     }

@@ -41,7 +41,7 @@ export class MailHandler
 
         return mailOptions;
     }
-    public static sendMail(mailData: MailBody): boolean
+    public static async sendMail(mailData: MailBody): Promise<boolean>
     {
         let isSent : boolean = false;
 
@@ -51,14 +51,15 @@ export class MailHandler
             if (error)
             {
                 console.error(error.message);
-                return isSent;
+                return false;
             }
 
             console.log("Email sent: " + info.response);
-            isSent = true;
+            
         });
+        ;
 
-        return isSent;
+        return await this.transporter.verify();
     }
 
 }

@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload , JwtHeader} from "jsonwebtoken";
 import { config } from "dotenv";
 config();
 
@@ -6,12 +6,12 @@ export class JwtHandler
 {
     private static secret: string = process.env.JWT_SECRET ?? "secret";
 
-    public static GenerateToken(payload: any): string
+    public static generateToken(payload: any): string
     {
         return jwt.sign(payload, this.secret, { expiresIn: "1d" });;
     }
 
-    public static VerifyToken(token: string): any
+    public static verifyToken(token: string): boolean
     {
         
         try
@@ -26,13 +26,13 @@ export class JwtHandler
         return false;
     }
 
-    private static DecodeToken(token: string): any
+    private static decodeToken(token: string): JwtPayload | null
     {
         return jwt.decode(token, {json: true});
     }
 
-    public static getPayload(token: string): any
+    public static getPayload<T>(token: string):  T
     {
-        return this.DecodeToken(token).payload;
+        return (this.decodeToken(token) as JwtPayload) as T;
     }
 }
