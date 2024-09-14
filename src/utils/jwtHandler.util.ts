@@ -6,12 +6,12 @@ export class JwtHandler
 {
     private static secret: string = process.env.JWT_SECRET ?? "secret";
 
-    public static generateToken(payload: any): string
+    public static generateToken(payload: any, expire: string = "1d"): string
     {
-        return jwt.sign(payload, this.secret, { expiresIn: "1d" });;
+        return jwt.sign(payload, this.secret, { expiresIn: expire });;
     }
 
-    public static verifyToken(token: string): boolean
+    public static verifyToken(token: string): boolean | string
     {
         
         try
@@ -22,8 +22,8 @@ export class JwtHandler
         catch(error: any)
         {
             console.log(error.message);
+            return error.message;
         }
-        return false;
     }
 
     private static decodeToken(token: string): JwtPayload | null

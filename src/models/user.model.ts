@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb"
 import { database } from "../database/db";
 import { config } from "dotenv";
+import { Role } from "../types/role.types";
 config();
 
 export interface User
@@ -12,7 +13,9 @@ export interface User
         family: string
     },
     email: string,
-    password: string
+    password: string,
+    role: Role,
+    saved: ObjectId[]
 }
 
 const userCollention = process.env.usersCollection ?? "users";

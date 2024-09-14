@@ -1,3 +1,4 @@
+import { PropertyRealeses, PropertyType } from "../types/property.types";
 import { ObjectId } from "mongodb";
 import { database } from "../database/db";
 import { config } from "dotenv";
@@ -14,9 +15,9 @@ export interface Property
     price: number,
     list_date: Date,
     location: string,
-    release_for : string,
     isFree: boolean,
-    type : string,
+    release_for : PropertyRealeses,
+    type : PropertyType,
     payment_method : string,
     bed_room : number,
     bath_room : number

@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import { database } from "../database/db";
 import { config } from "dotenv";
+import { Role } from "../types/role.types";
 config();
 
 export interface Agent
@@ -14,6 +15,7 @@ export interface Agent
     email: string,
     password: string,
     phone: string,
+    role: Role,
     companyId: ObjectId
 }
 
