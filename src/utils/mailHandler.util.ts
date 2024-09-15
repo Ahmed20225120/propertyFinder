@@ -2,6 +2,7 @@ import nodemailer, { Transporter , SendMailOptions} from "nodemailer";
 import {config} from "dotenv";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 import { MailBody } from "../interfaces/mail/mailBody.interface";
+import { FileHandler } from "./fileHandler.util";
 
 config();
 
@@ -14,6 +15,11 @@ export class MailHandler
     private static userPass : string = process.env.MAILTRAP_PASS ?? "";
     private static server_mail : string = process.env.SERVER_EMAIL ?? "";
 
+    public static welcomeMail(mailBody: MailBody)
+    {
+        mailBody.html = FileHandler.readFile('./public/html/mail.html').replace("${user}",(mailBody.to.split('@')[0]));
+        this.sendMail(mailBody);
+    }
     private static getTransporter(): Transporter
     {
         if (!this.transporter)

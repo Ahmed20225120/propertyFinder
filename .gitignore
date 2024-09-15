@@ -4,3 +4,4 @@ nodemon.json
 .env
 test/
 design/
+public/images/

@@ -18,7 +18,7 @@ export interface Company
     job: string,
     address: string,
     role: Role,
-    image: string
+    image?: string
 }
 
 

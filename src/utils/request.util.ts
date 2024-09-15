@@ -4,24 +4,30 @@ import { HeaderAuth } from "../interfaces/header/header.interface";
 
 export class RequestUtil
 {
-    public static getBody(request: Request)
+    public static hasBody(request: Request) : boolean
     {
-        return request.body
+        return !request.body || Object.keys(request.body).length === 0
     }
 
-    public static getQuery(request: Request)
+    public static hasQuery(request: Request) : boolean
     {
-        return request.query
+        return request.query && Object.keys(request.query).length > 0
     }
 
-    public static getParamsByKey(request: Request, key: string)
+
+    public static getParamsByKey(request: Request, key: string) : string
     {
         return request.params.key;
     }
 
-    public static getHeaders(request: Request)
+    public static getBodyByKey(request: Request, key: string) : string
     {
-        return request.headers
+        return request.body.key;
+    }
+
+    public static hasHeaders(request: Request) : boolean
+    {
+        return request.headers && Object.keys(request.headers).length > 0
     }
 
     public static getToken(request: Request): string

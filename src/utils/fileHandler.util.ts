@@ -3,7 +3,7 @@ import fs from 'fs';
 export class FileHandler
 {
 
-    public static writeFile(path: string, data: string): void
+    public static writeFile(path: string, data: Buffer): void
     {   
         fs.writeFileSync(path, data);
     }    

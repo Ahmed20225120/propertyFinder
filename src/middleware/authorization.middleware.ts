@@ -5,15 +5,17 @@ import { RequestUtil } from "../utils/request.util";
 import { Role } from "../types/role.types";
 
 
-export const authorize = (validRole: Role): RequestHandler => 
+export const authorize = (...validRole: Role[]): RequestHandler => 
 {
   return (req, res, next) =>
     {
-        const role = RequestUtil.getRole(req);
+        const role = RequestUtil.getRole(req) as Role;
 
         if (!role) return res.status(401).json({ message: "role not found" });
 
-        if (role === validRole) 
+        let isValid = validRole.includes(role);
+
+        if (isValid) 
             next();
         
         else 
